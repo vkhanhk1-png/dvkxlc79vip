@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: lc79-vip-dvk3010
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 8 --bind 0.0.0.0:$PORT --timeout 120
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: APP_SECRET
+        generateValue: true
+      - key: TELEGRAM_BOT_TOKEN
+        value: "9039627841:AAH9WPU5Xu_z6TbmHyojYc7EUjZ_7r_1DkY"
+      - key: MD5_API_URL
+        value: "https://apilc79vip-j6jb.onrender.com/api/md5"
+      - key: TX_API_URL
+        value: "https://apilc79vip-j6jb.onrender.com/api/tx"
+      - key: KEY_VERIFY_URL
+        value: "https://rivenxvkhanh.onrender.com/api/verify"
+      - key: KEY_DEVICE_URL
+        value: "https://rivenxvkhanh.onrender.com/api/check-device"
